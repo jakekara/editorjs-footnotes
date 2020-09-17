@@ -1,3 +1,4 @@
-import hello from "./hello";
+import Foonote from "./Footnote";
+import FootnoteMaker from "./FootnoteMaker";
 
-console.log(hello("Earth"));
+export default { Footnote };
