@@ -1,4 +1,4 @@
-export default class FootnoteMaker {
+export class FootnoteMaker {
   static get isInline() {
     return true;
   }

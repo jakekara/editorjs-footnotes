@@ -1,6 +1,6 @@
 import Paragraph from "@editorjs/paragraph";
 
-export default class FootnoteParagraph extends Paragraph {
+export class FootnoteParagraph extends Paragraph {
   constructor({ data, config, api }) {
     super({ data, config, api });
 
