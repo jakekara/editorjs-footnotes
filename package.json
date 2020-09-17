@@ -2,6 +2,7 @@
   "name": "@jakekara/editorjs-footnotes",
   "license": "GPL-3.0",
   "version": "0.0.1-alpha",
+  "types": "index.d.ts",
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
+    "@editorjs/editorjs": "^2.18.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
     "jest": "^26.4.2",

@@ -1,11 +1,19 @@
-export class FootnoteMaker {
+import { API, InlineTool } from "@editorjs/editorjs";
+
+export class FootnoteMaker implements InlineTool {
+  api: API;
+  button?: HTMLButtonElement;
+  state: boolean;
+
   static get isInline() {
     return true;
   }
 
-  constructor({ api }) {
+  constructor(args: { api: API }) {
+    const { api } = args;
+
     this.api = api;
-    this.button = null;
+    // this.button = null;
     this.state = false;
 
     this.render = this.render.bind(this);
@@ -21,7 +29,7 @@ export class FootnoteMaker {
     return this.button;
   }
 
-  surround(range) {
+  surround(range: Range) {
     // TODO - Check to see if there are any <mark> elements inside
     // the selectedText. If so, don't allow a footnote to be created.
     // however, this will require us to create a "delete" footnote
@@ -81,7 +89,7 @@ export class FootnoteMaker {
     console.log("Clear called");
   }
 
-  checkState(selection) {
+  checkState(selection: Selection): boolean {
     const text = selection.anchorNode;
 
     if (!text) {
@@ -91,6 +99,8 @@ export class FootnoteMaker {
     const anchorElement = text instanceof Element ? text : text.parentElement;
 
     this.state = !!anchorElement.closest("MARK");
+
+    return this.state;
   }
 }
 

@@ -1,9 +1,19 @@
 import Paragraph from "@editorjs/paragraph";
 import { FootnoteMaker } from "./FootnoteMaker";
+import { API, BlockToolData, EditorConfig } from "@editorjs/editorjs";
 import "./style.css";
 
+interface TuneSetting {
+  name: string;
+  icon: string;
+  active: boolean;
+  handleClick: () => void;
+}
+
 export class Footnote extends Paragraph {
-  constructor({ data, config, api }) {
+
+  constructor(opts: { data: BlockToolData; config: EditorConfig; api: API }) {
+    const { data, config, api } = opts;
     super({ data, config, api });
 
     // if no ID is set, set one
@@ -59,7 +69,7 @@ export class Footnote extends Paragraph {
 
   toggleEnableEmbedCode() {
     this.enableEmbedCode = !this.enableEmbedCode;
-    console.log("toggling embed code: ", this.enableEmbedCode, this.data);
+    console.log("toggling embed code: ", this.enableEmbedCode, this._data);
 
     console.log("this.wrapper", this.wrapper);
     let embedCode = this.wrapper.querySelector(".embed-code");
@@ -86,7 +96,7 @@ export class Footnote extends Paragraph {
     };
   }
 
-  save(blockContent) {
+  save(blockContent: BlockToolData) {
     const content = blockContent.querySelector(".content-area");
     const text = content ? content.innerHTML : "";
 
@@ -110,7 +120,7 @@ export class Footnote extends Paragraph {
   renderSettings() {
     const wrapper = document.createElement("div");
 
-    this.settings.forEach((tune) => {
+    this.settings.forEach((tune: TuneSetting) => {
       let button = document.createElement("div");
 
       button.classList.add("cdx-settings-button");
@@ -141,7 +151,7 @@ export class Footnote extends Paragraph {
     contentArea.classList.add("content-area");
     contentArea.classList.add("ce-paragraph");
     contentArea.innerHTML = this.data.text;
-    contentArea.contentEditable = true;
+    contentArea.contentEditable = "true";
     wrapper.appendChild(contentArea);
 
     contentArea.addEventListener("keyup", this.onKeyUp);
