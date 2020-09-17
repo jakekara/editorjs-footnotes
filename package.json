@@ -1,4 +1,6 @@
 {
+  "name": "@jakekara/editorsj-footnotes",
+  "license": "GPL-3.0",
   "scripts": {
     "build": "webpack",
     "test": "jest",
