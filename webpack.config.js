@@ -7,9 +7,15 @@ module.exports = {
   output: {
     filename: "[name].js",
     path: __dirname + "/dist",
+    library: "@jakekara/editorjs-footnotes",
+    libraryTarget: "amd",
   },
   module: {
     rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
       {
         test: /\.tsx?$/,
         use: "ts-loader",

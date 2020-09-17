@@ -4,10 +4,11 @@
   "version": "0.0.1-alpha",
   "scripts": {
     "build": "webpack",
+    "watch": "webpack --watch",
     "test": "jest",
     "prettify": "prettier --write src"
   },
-  "main": "./dist/index",
+  "main": "./dist/main",
   "dependencies": {
     "@editorjs/paragraph": "^2.7.0"
   },
@@ -15,6 +16,7 @@
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
     "jest": "^26.4.2",
     "prettier": "^2.1.2",
     "ts-loader": "^8.0.3",

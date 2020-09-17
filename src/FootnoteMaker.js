@@ -1,4 +1,4 @@
-export default class FootnoteMaker {
+export class FootnoteMaker {
   static get isInline() {
     return true;
   }
@@ -7,6 +7,9 @@ export default class FootnoteMaker {
     this.api = api;
     this.button = null;
     this.state = false;
+
+    this.render = this.render.bind(this);
+    this.surround = this.surround.bind(this);
   }
 
   render() {
@@ -29,9 +32,6 @@ export default class FootnoteMaker {
     // selected, the icon changes to a delete link icon. this is
     // probably a good solution.
     // https://github.com/codex-team/editor.js/blob/next/src/components/inline-tools/inline-tool-link.ts
-
-    console.log("this.state", this.state);
-    console.log();
 
     if (this.state) {
       // If highlights is already applied, do nothing for now
@@ -56,21 +56,22 @@ export default class FootnoteMaker {
     // Insert new element
     range.insertNode(mark);
 
-    // add a footnote block
+    // add a footnote block now
     const newBlock = this.api.blocks.insert(
-      "footnote",
+      "footnoteParagraph",
       { id },
       undefined,
       undefined,
       true
     );
 
-    console.log(
-      this.api.blocks
-        .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
-        .save()
-        .then((d) => console.log(d))
-    );
+    // console.log(
+    //   this.api.blocks
+    //     .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
+    //     .save()
+    //     .then((d) => console.log(d))
+    // );
+
     this.api.inlineToolbar.close();
 
     // this.api.focus(this.api.blocks.getCurrentBlockIndex() + 1)
@@ -92,3 +93,5 @@ export default class FootnoteMaker {
     this.state = !!anchorElement.closest("MARK");
   }
 }
+
+console.log("Defined class", FootnoteMaker);

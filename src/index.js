@@ -1,4 +1,6 @@
-import Foonote from "./Footnote";
-import FootnoteMaker from "./FootnoteMaker";
+import { Footnote } from "./Footnote";
+import { FootnoteMaker } from "./FootnoteMaker";
 
-export default { Footnote };
+console.log("Imported", Footnote, FootnoteMaker);
+
+export { Footnote, FootnoteMaker };

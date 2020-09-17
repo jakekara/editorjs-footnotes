@@ -1,0 +1,29 @@
+.footnote-block {
+    background-color: lightyellow;
+    box-sizing: border-box;
+    padding: 3px;
+    color: #222;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    border: 2px solid white;
+}
+
+.footnote-block .meta-bar {
+    font-size: 9px;
+    color: gray;
+    font-family: monaco, monospace, "Courier New", Courier;
+    padding: 2px;
+    border-bottom: 1px solid #efefef;
+}
+
+.footnote-block .content-area[contenteditable] {
+    outline: none;
+}
+
+.footnote-block .embed-code {
+    width: 100%;
+    font-size: 12px;
+    font-family: monaco, monospace, "Courier New", Courier;
+    border: #555;
+    background-color: #efefef;
+    color: #222;
+}

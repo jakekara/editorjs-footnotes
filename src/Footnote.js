@@ -1,6 +1,8 @@
 import Paragraph from "@editorjs/paragraph";
+import { FootnoteMaker } from "./FootnoteMaker";
+import "./style.css";
 
-export default class FootnoteParagraph extends Paragraph {
+export class Footnote extends Paragraph {
   constructor({ data, config, api }) {
     super({ data, config, api });
 
@@ -161,3 +163,5 @@ export default class FootnoteParagraph extends Paragraph {
     };
   }
 }
+
+console.log("Defined class", FootnoteMaker);
