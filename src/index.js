@@ -1,4 +1,4 @@
-import Foonote from "./Footnote";
+import Footnote from "./Footnote";
 import FootnoteMaker from "./FootnoteMaker";
 
-export default { Footnote };
+export default { Footnote, FootnoteMaker };

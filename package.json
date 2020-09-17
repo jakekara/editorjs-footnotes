@@ -7,7 +7,7 @@
     "test": "jest",
     "prettify": "prettier --write src"
   },
-  "main": "./dist/index",
+  "main": "./dist/main",
   "dependencies": {
     "@editorjs/paragraph": "^2.7.0"
   },
