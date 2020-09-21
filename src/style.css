@@ -1,4 +1,4 @@
-.footnote-block {
+.footnoteBlock {
   background-color: lightyellow;
   box-sizing: border-box;
   padding: 3px;
@@ -7,7 +7,7 @@
   border: 2px solid white;
 }
 
-.footnote-block .meta-bar {
+.footnoteBlock .metaBar {
   font-size: 9px;
   color: gray;
   font-family: monaco, monospace, "Courier New", Courier;
@@ -15,15 +15,19 @@
   border-bottom: 1px solid #efefef;
 }
 
-.footnote-block .content-area[contenteditable] {
+.footnoteBlock .contentArea[contenteditable] {
   outline: none;
 }
 
-.footnote-block .embed-code {
+.footnoteBlock .embedCode {
   width: 100%;
   font-size: 12px;
   font-family: monaco, monospace, "Courier New", Courier;
   border: #555;
   background-color: #efefef;
   color: #222;
+}
+
+.footnotebBlock .embedPreview {
+  border: none;
 }

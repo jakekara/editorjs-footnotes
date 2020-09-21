@@ -1,3 +1,5 @@
+// const path = require("path");
+
 module.exports = {
   mode: "production",
   devtool: "inline-source-map",
@@ -14,7 +16,24 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        // use: ["style-loader", "css-loader"],
+        // include: path.join(__dirname, "src"),
+
+        use: [
+          "style-loader",
+          {
+            loader: "@teamsupercell/typings-for-css-modules-loader",
+            options: {
+              // pass all the options for `css-loader` to `css-loader`, eg.
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,

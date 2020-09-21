@@ -1,7 +1,7 @@
 import Paragraph from "@editorjs/paragraph";
 import { FootnoteMaker } from "./FootnoteMaker";
 import { API, BlockToolData, EditorConfig } from "@editorjs/editorjs";
-import "./style.css";
+import styles from "./style.css";
 
 interface TuneSetting {
   name: string;
@@ -44,8 +44,8 @@ export class Footnote extends Paragraph {
   }
 
   renderEmbedCode() {
-    let preview = this.wrapper.querySelector(".embed-preview");
-    let embedCode = this.wrapper.querySelector(".embed-code").value;
+    let preview = this.wrapper.querySelector("." + styles.embedPreview);
+    let embedCode = this.wrapper.querySelector("." + styles.embedCode).value;
     console.log("Rendering embed code", this.wrapper);
 
     if (!this.enableEmbedCode) {
@@ -57,7 +57,7 @@ export class Footnote extends Paragraph {
 
     if (!preview) {
       preview = document.createElement("div");
-      preview.classList.add("embed-preview");
+      preview.classList.add(styles.embedPreview);
       this.wrapper.appendChild(preview);
     }
 
@@ -71,14 +71,14 @@ export class Footnote extends Paragraph {
     console.log("toggling embed code: ", this.enableEmbedCode, this._data);
 
     console.log("this.wrapper", this.wrapper);
-    let embedCode = this.wrapper.querySelector(".embed-code");
+    let embedCode = this.wrapper.querySelector("." + styles.embedCode);
 
     if (this.enableEmbedCode) {
       if (embedCode) {
         return;
       }
       embedCode = document.createElement("textarea");
-      embedCode.classList.add("embed-code");
+      embedCode.classList.add(styles.embedCode);
       this.wrapper.appendChild(embedCode);
       embedCode.addEventListener("change", this.renderEmbedCode);
       embedCode.addEventListener("keyup", this.renderEmbedCode);
@@ -96,13 +96,13 @@ export class Footnote extends Paragraph {
   }
 
   save(blockContent: BlockToolData) {
-    const content = blockContent.querySelector(".content-area");
+    const content = blockContent.querySelector("." + styles.contentArea);
     const text = content ? content.innerHTML : "";
 
-    const id = blockContent.querySelector(".meta-bar").getAttribute("data-id");
+    const id = blockContent.querySelector("." + styles.metaBar).getAttribute("data-id");
 
-    const embedCode = blockContent.querySelector(".embed-code")
-      ? blockContent.querySelector(".embed-code").value
+    const embedCode = blockContent.querySelector("." + styles.embedCode)
+      ? blockContent.querySelector("." + styles.embedCode).value
       : undefined;
 
     console.log("save.embedCode", embedCode);
@@ -138,16 +138,16 @@ export class Footnote extends Paragraph {
 
   render() {
     const wrapper = document.createElement("div");
-    wrapper.classList.add("footnote-block");
+    wrapper.classList.add(styles.footnoteBlock);
 
     const metaBar = document.createElement("div");
-    metaBar.classList.add("meta-bar");
+    metaBar.classList.add(styles.metaBar);
     metaBar.setAttribute("data-id", this.data.id);
     metaBar.innerHTML = "[ #" + this.data.id + " ] ";
     wrapper.appendChild(metaBar);
 
     const contentArea = document.createElement("div");
-    contentArea.classList.add("content-area");
+    contentArea.classList.add(styles.contentArea);
     contentArea.classList.add("ce-paragraph");
     contentArea.innerHTML = this.data.text;
     contentArea.contentEditable = "true";
