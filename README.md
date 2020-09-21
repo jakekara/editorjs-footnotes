@@ -1,9 +1,7 @@
-# Boilerplate JS project
+# editorjs-footnotes
 
-> A boilerplate JS project for a browser environment.
+> footnotes for [editor.js](https://github.com/codex-team/editor.js)
 
-## Typescript
+## Overview
 
-### Importing non-code assets
-
-Extend custom.d.ts to add new types. See [the ts docs](https://webpack.js.org/guides/typescript/#importing-other-assets) for info on importing non-code assets.
+Adds a `Footnote` that implements `BlockTool` and FootnoteMaker that implements `InlineTool` that allows use to select a span of text and generate a new block. Automatically inserts an anchor link with a generated id.
