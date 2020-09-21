@@ -11,7 +11,6 @@ interface TuneSetting {
 }
 
 export class Footnote extends Paragraph {
-
   constructor(opts: { data: BlockToolData; config: EditorConfig; api: API }) {
     const { data, config, api } = opts;
     super({ data, config, api });
