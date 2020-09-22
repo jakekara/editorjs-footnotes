@@ -8,6 +8,10 @@ Adds a `Footnote` that implements `BlockTool` and FootnoteMaker that implements 
 
 [![Watch on a video demo on YouTube](https://img.youtube.com/vi/ioWUm3nI_mE/0.jpg)](https://youtu.be/ioWUm3nI_mE "Watch a video demo on YouTube")
 
+## Live demo
+
+Try it a [live demo here](https://jakekara-editorjs-footnotes.netlify.app/).
+
 ## Usage example
 
 ```javascript
