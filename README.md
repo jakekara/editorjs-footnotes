@@ -14,9 +14,17 @@ Try it a [live demo here](https://jakekara-editorjs-footnotes.netlify.app/).
 
 ## Usage example
 
+Install:
+
+```bash
+npm add -D editorjs-footnotes
+```
+
+Then:
+
 ```javascript
 import EditorJS from "@editorjs/editorjs";
-import { Footnote, FootnoteMaker } from "@jakekara/editorjs-footnotes";
+import { Footnote, FootnoteMaker } from "editorjs-footnotes";
 
 const holderElement = document.createElement("div");
 holderElement.setAttribute("id", "editor-js-holder");
