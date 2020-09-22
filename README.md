@@ -6,6 +6,8 @@
 
 Adds a `Footnote` that implements `BlockTool` and FootnoteMaker that implements `InlineTool` that allows use to select a span of text and generate a new block. Automatically inserts an anchor link with a generated id.
 
+[![Watch on a video demo on YouTube](https://img.youtube.com/vi/ioWUm3nI_mE/0.jpg)](https://youtu.be/ioWUm3nI_mE "Watch a video demo on YouTube")
+
 ## Usage example
 
 ```javascript
