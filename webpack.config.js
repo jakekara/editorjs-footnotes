@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: "[name].js",
     path: __dirname + "/dist",
-    library: "@jakekara/editorjs-footnotes",
+    library: "editorjs-footnotes",
     libraryTarget: "amd",
   },
   module: {

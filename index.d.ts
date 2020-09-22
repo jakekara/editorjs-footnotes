@@ -1,7 +1,7 @@
 import { BlockTool, InlineTool, PasteEvent, SanitizerConfig } from "@editorjs/editorjs";
 import { MoveEvent } from "@editorjs/editorjs/types/tools";
 
-declare module '@jakekara/editorjs-footnotes' {
+declare module 'editorjs-footnotes' {
     export class Footnote implements BlockTool {
         sanitize?: SanitizerConfig;
         save(block: HTMLElement): void;

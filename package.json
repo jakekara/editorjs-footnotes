@@ -1,7 +1,15 @@
 {
   "name": "editorjs-footnotes",
+  "homepage": "https://github.com/jakekara/editorjs-footnotes/",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jakekara/editorjs-footnotes.githttps://github.com/jakekara/editorjs-footnotes"
+  },
+  "bugs": {
+    "url": "https://github.com/jakekara/editorjs-footnotes/issues"
+  },
   "license": "GPL-3.0",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "types": "index.d.ts",
   "scripts": {
     "build": "webpack",
