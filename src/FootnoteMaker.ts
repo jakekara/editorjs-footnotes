@@ -1,4 +1,5 @@
 import { API, InlineTool } from "@editorjs/editorjs";
+import { generateID } from "./generateID";
 
 export class FootnoteMaker implements InlineTool {
   api: API;
@@ -49,7 +50,7 @@ export class FootnoteMaker implements InlineTool {
     const selectedText = range.extractContents();
 
     // Create MARK element
-    const id = Date.now().toString(36);
+    const id = generateID();
 
     const mark = document.createElement("a");
     mark.href = "#" + id;

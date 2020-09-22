@@ -1,5 +1,6 @@
 import Paragraph from "@editorjs/paragraph";
 import { FootnoteMaker } from "./FootnoteMaker";
+import { generateID } from "./generateID";
 import { API, BlockToolData, EditorConfig } from "@editorjs/editorjs";
 import styles from "./style.css";
 
@@ -17,10 +18,11 @@ export class Footnote extends Paragraph {
 
     // if no ID is set, set one
     if (!data.id) {
-      const initialID = "fn-" + Date.now().toString(36);
+      const initialID = generateID();
       this._data.id = initialID;
     }
 
+    // if not text is set, set it
     if (!data.text) {
       this._data.text = "";
     }
@@ -99,7 +101,9 @@ export class Footnote extends Paragraph {
     const content = blockContent.querySelector("." + styles.contentArea);
     const text = content ? content.innerHTML : "";
 
-    const id = blockContent.querySelector("." + styles.metaBar).getAttribute("data-id");
+    const id = blockContent
+      .querySelector("." + styles.metaBar)
+      .getAttribute("data-id");
 
     const embedCode = blockContent.querySelector("." + styles.embedCode)
       ? blockContent.querySelector("." + styles.embedCode).value
