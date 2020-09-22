@@ -2,7 +2,7 @@
   "name": "@jakekara/editorjs-footnotes",
   "license": "GPL-3.0",
   "version": "0.0.1-alpha",
-  "types": "index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
