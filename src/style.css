@@ -8,11 +8,16 @@
 }
 
 .footnoteBlock .metaBar {
-  font-size: 9px;
+  /* font-size: 9px; */
   color: gray;
   font-family: monaco, monospace, "Courier New", Courier;
   padding: 2px;
   border-bottom: 1px solid #efefef;
+  display: flex;
+}
+
+.footnotebBlock .metaBar .textInput {
+  flex:1;
 }
 
 .footnoteBlock .contentArea[contenteditable] {

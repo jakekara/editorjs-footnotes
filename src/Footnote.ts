@@ -102,17 +102,21 @@ export class Footnote extends Paragraph {
     const text = content ? content.innerHTML : "";
 
     const id = blockContent
-      .querySelector("." + styles.metaBar)
+      // .querySelector("." + styles.metaBar)
+      .querySelector(".id-field")
       .getAttribute("data-id");
+
+    const label = blockContent
+      .querySelector(".label-field")
+      .textContent
 
     const embedCode = blockContent.querySelector("." + styles.embedCode)
       ? blockContent.querySelector("." + styles.embedCode).value
       : undefined;
 
-    console.log("save.embedCode", embedCode);
-
     const ret = {
       id,
+      label,
       text,
       embedCode,
     };
@@ -146,9 +150,24 @@ export class Footnote extends Paragraph {
 
     const metaBar = document.createElement("div");
     metaBar.classList.add(styles.metaBar);
+    metaBar.classList.add("id-field")
     metaBar.setAttribute("data-id", this.data.id);
-    metaBar.innerHTML = "[ #" + this.data.id + " ] ";
+    metaBar.innerHTML = "[ #" + this.data.id + " ]";
     wrapper.appendChild(metaBar);
+
+    const labelBar = document.createElement("div");
+    labelBar.classList.add(styles.metaBar);
+    const label = document.createElement("div");
+
+    label.innerHTML = "<b>footnote label:</b> "
+    const labelInput = document.createElement("div");
+    labelInput.setAttribute("contentEditable", "true");
+    labelInput.classList.add("label-field");
+    labelInput.classList.add(styles.textInput);
+    labelInput.setAttribute("type", "text");
+    labelBar.appendChild(label)
+    labelBar.appendChild(labelInput)
+    wrapper.appendChild(labelBar);
 
     const contentArea = document.createElement("div");
     contentArea.classList.add(styles.contentArea);

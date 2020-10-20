@@ -6,6 +6,7 @@ declare namespace StyleCssNamespace {
     footnoteBlock: string;
     footnotebBlock: string;
     metaBar: string;
+    textInput: string;
   }
 }
 
