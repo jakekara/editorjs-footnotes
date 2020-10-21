@@ -1,11 +1,10 @@
 declare namespace StyleCssNamespace {
   export interface IStyleCss {
+    barLabel: string;
     contentArea: string;
     embedCode: string;
     embedPreview: string;
     footnoteBlock: string;
-    footnotebBlock: string;
-    metaBar: string;
     textInput: string;
   }
 }

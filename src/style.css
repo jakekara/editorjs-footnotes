@@ -1,23 +1,30 @@
 .footnoteBlock {
-  background-color: lightyellow;
+  /* background-color: lightyellow; */
   box-sizing: border-box;
-  padding: 3px;
+  padding: 1em;
+
   color: #222;
   /* font-family: Arial, Helvetica, sans-serif; */
-  border: 2px solid white;
+  border: 1px solid gray;
+  border-radius: 3px;
 }
 
-.footnoteBlock .metaBar {
+.textInput,
+.barLabel,
+textarea {
   /* font-size: 9px; */
   color: gray;
   font-family: monaco, monospace, "Courier New", Courier;
+  font-weight: bold;
+}
+.barLabel {
   padding: 2px;
-  border-bottom: 1px solid #efefef;
-  display: flex;
 }
 
-.footnotebBlock .metaBar .textInput {
-  flex:1;
+.textInput {
+  padding: 0 1em;
+  margin: 0 1em;
+  border: 1px solid gray;
 }
 
 .footnoteBlock .contentArea[contenteditable] {
@@ -25,14 +32,20 @@
 }
 
 .footnoteBlock .embedCode {
-  width: 100%;
+  /* width: 100%; */
   font-size: 12px;
   font-family: monaco, monospace, "Courier New", Courier;
-  border: #555;
+  border: 1px solid gray;
   background-color: #efefef;
   color: #222;
+  padding: 1 1em;
+  box-sizing: border-box;
+  width: calc(100% - 2em);
+  margin-left: 1em;
 }
 
-.footnotebBlock .embedPreview {
-  border: none;
+.embedPreview {
+  border: 1px dashed gray;
+  padding: 1em;
+  margin: 1em;
 }

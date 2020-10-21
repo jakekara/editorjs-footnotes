@@ -30,10 +30,10 @@ export class Footnote extends Paragraph {
     this.enableEmbedCode = false;
 
     this.toggleEmbedCode = this.toggleEnableEmbedCode.bind(this);
-    this.renderEmbedCode = this.renderEmbedCode.bind(this);
     this.save = this.save.bind(this);
     this.render = this.render.bind(this);
     this.renderSettings = this.renderSettings.bind(this);
+    this.renderEmbedCode = this.renderEmbedCode.bind(this);
 
     this.settings = [
       {
@@ -48,13 +48,16 @@ export class Footnote extends Paragraph {
   renderEmbedCode() {
     let preview = this.wrapper.querySelector("." + styles.embedPreview);
     let embedCode = this.wrapper.querySelector("." + styles.embedCode).value;
-    console.log("Rendering embed code", this.wrapper);
 
+    console.log("renderEmbedCode", this.enableEmbedCode);
     if (!this.enableEmbedCode) {
-      // remove preview
-      if (preview) {
-        preview.remove();
-      }
+      console.log("Removing embed code preview");
+      preview.remove();
+
+      // // remove preview
+      // if (preview) {
+      //   preview.remove();
+      // }
     }
 
     if (!preview) {
@@ -63,29 +66,41 @@ export class Footnote extends Paragraph {
       this.wrapper.appendChild(preview);
     }
 
-    console.log("renderEmbedCode", preview, this.data);
-
     preview.innerHTML = embedCode;
   }
 
   toggleEnableEmbedCode() {
     this.enableEmbedCode = !this.enableEmbedCode;
-    console.log("toggling embed code: ", this.enableEmbedCode, this._data);
 
-    console.log("this.wrapper", this.wrapper);
+    console.log("Enable embed code", this.enableEmbedCode);
     let embedCode = this.wrapper.querySelector("." + styles.embedCode);
+    let embedCodeLabel = this.wrapper.querySelector(".embed-code-label");
+    let embedCodePreview = this.wrapper.querySelector(
+      "." + styles.embedPreview
+    );
 
     if (this.enableEmbedCode) {
       if (embedCode) {
         return;
       }
+
+      embedCodeLabel = document.createElement("div");
+      embedCodeLabel.classList.add("embed-code-label");
+      embedCodeLabel.classList.add(styles.barLabel);
+      embedCodeLabel.innerHTML = "Embed code";
+      this.wrapper.appendChild(embedCodeLabel);
+
       embedCode = document.createElement("textarea");
       embedCode.classList.add(styles.embedCode);
       this.wrapper.appendChild(embedCode);
       embedCode.addEventListener("change", this.renderEmbedCode);
       embedCode.addEventListener("keyup", this.renderEmbedCode);
     } else {
+      embedCodeLabel.remove();
       embedCode.remove();
+      if (embedCodePreview) {
+        embedCodePreview.remove();
+      }
     }
   }
 
@@ -106,9 +121,7 @@ export class Footnote extends Paragraph {
       .querySelector(".id-field")
       .getAttribute("data-id");
 
-    const label = blockContent
-      .querySelector(".label-field")
-      .textContent
+    const label = blockContent.querySelector(".label-field").textContent;
 
     const embedCode = blockContent.querySelector("." + styles.embedCode)
       ? blockContent.querySelector("." + styles.embedCode).value
@@ -149,28 +162,37 @@ export class Footnote extends Paragraph {
     wrapper.classList.add(styles.footnoteBlock);
 
     const metaBar = document.createElement("div");
-    metaBar.classList.add(styles.metaBar);
-    metaBar.classList.add("id-field")
+    // metaBar.classList.add(styles.metaBar);
+    metaBar.classList.add("id-field");
+    metaBar.classList.add(styles.barLabel);
     metaBar.setAttribute("data-id", this.data.id);
     metaBar.innerHTML = "[ #" + this.data.id + " ]";
     wrapper.appendChild(metaBar);
 
     const labelBar = document.createElement("div");
-    labelBar.classList.add(styles.metaBar);
+    // labelBar.classList.add(styles.metaBar);
+    labelBar.classList.add(styles.barLabel);
     const label = document.createElement("div");
 
-    label.innerHTML = "<b>footnote label:</b> "
+    label.innerHTML = "footnote label";
     const labelInput = document.createElement("div");
     labelInput.setAttribute("contentEditable", "true");
     labelInput.classList.add("label-field");
+    // labelInput.classList.add(styles.flexFill);
     labelInput.classList.add(styles.textInput);
-    labelInput.setAttribute("type", "text");
-    labelBar.appendChild(label)
-    labelBar.appendChild(labelInput)
+    labelBar.appendChild(label);
+    labelBar.appendChild(labelInput);
     wrapper.appendChild(labelBar);
+
+    const contentLabel = document.createElement("div");
+    contentLabel.classList.add(styles.barLabel);
+    contentLabel.innerHTML = "footnote body";
+    wrapper.appendChild(contentLabel);
 
     const contentArea = document.createElement("div");
     contentArea.classList.add(styles.contentArea);
+    contentArea.classList.add(styles.textInput);
+
     contentArea.classList.add("ce-paragraph");
     contentArea.innerHTML = this.data.text;
     contentArea.contentEditable = "true";
