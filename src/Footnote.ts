@@ -33,7 +33,7 @@ export class Footnote extends Paragraph {
   }
 
   renderEmbedCode(e?: any) {
-    e?.preventDefault();
+    e?.preventDefault()
     let embedCodeLabel = this.wrapper.querySelector('.' + styles.embedCodeLabel)
     let embedCode = this.wrapper.querySelector('.' + styles.embedCode)
     let embedCodePreview = this.wrapper.querySelector('.' + styles.embedPreview)
@@ -48,7 +48,7 @@ export class Footnote extends Paragraph {
 
     if (!embedCode) {
       embedCode = document.createElement('textarea')
-      embedCode.value = this.data.embedCode || ""
+      embedCode.value = this.data.embedCode || ''
       embedCode.classList.add(styles.embedCode)
       embedCode.addEventListener('change', this.renderEmbedCode)
       embedCode.addEventListener('keyup', this.renderEmbedCode)
@@ -64,7 +64,6 @@ export class Footnote extends Paragraph {
     }
 
     embedCodePreview.innerHTML = embedCode.value
-
   }
 
   static get sanitize() {
@@ -95,7 +94,7 @@ export class Footnote extends Paragraph {
       embedCode,
     }
 
-    console.log("Saving", ret);
+    console.log('Saving', ret)
 
     return ret
   }
@@ -115,13 +114,13 @@ export class Footnote extends Paragraph {
     // labelBar.classList.add(styles.barLabel)
     const label = document.createElement('div')
     label.innerHTML = 'footnote label'
-    label.classList.add(styles.barLabel);
+    label.classList.add(styles.barLabel)
     const labelInput = document.createElement('div')
     labelInput.setAttribute('contentEditable', 'true')
     labelInput.classList.add('label-field')
     // labelInput.classList.add(styles.flexFill);
     labelInput.classList.add(styles.textInput)
-    labelInput.innerHTML = this.data.label || ""
+    labelInput.innerHTML = this.data.label || ''
     wrapper.appendChild(label)
     wrapper.appendChild(labelInput)
     // wrapper.appendChild(labelBar)
