@@ -5,8 +5,12 @@
 
   color: #222;
   /* font-family: Arial, Helvetica, sans-serif; */
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
+
+  box-shadow: 0px 0px 10px #ddd;
   border-radius: 3px;
+  margin-top: 10px;
+
 }
 
 .textInput,
@@ -14,11 +18,12 @@
 textarea {
   /* font-size: 9px; */
   color: gray;
-  font-family: monaco, monospace, "Courier New", Courier;
+  font-family: monaco, monospace, 'Courier New', Courier;
   font-weight: bold;
+
 }
 .barLabel {
-  padding: 2px;
+  padding-bottom: 12px;
 }
 
 .textInput {
@@ -34,9 +39,10 @@ textarea {
 .footnoteBlock .embedCode {
   /* width: 100%; */
   font-size: 12px;
-  font-family: monaco, monospace, "Courier New", Courier;
+  font-family: monaco, monospace, 'Courier New', Courier;
   border: 1px solid gray;
   background-color: #efefef;
+  resize: vertical;
   color: #222;
   padding: 1 1em;
   box-sizing: border-box;
@@ -48,4 +54,12 @@ textarea {
   border: 1px dashed gray;
   padding: 1em;
   margin: 1em;
+}
+
+.embedCodeLabel {
+  text-transform: none;
+}
+
+.idField {
+  text-align: right;
 }
