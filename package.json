@@ -9,13 +9,13 @@
     "url": "https://github.com/jakekara/editorjs-footnotes/issues"
   },
   "license": "GPL-3.0",
-  "version": "0.0.3-alpha",
+  "version": "0.0.4-alpha",
   "types": "index.d.ts",
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
     "test": "jest --verbose",
-    "prettify": "prettier --write src"
+    "prettify": "prettier --conifg .prettierrc --write src"
   },
   "main": "./dist/main",
   "dependencies": {
