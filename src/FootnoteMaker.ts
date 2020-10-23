@@ -1,33 +1,33 @@
-import { API, InlineTool } from "@editorjs/editorjs";
-import { generateID } from "./generateID";
+import { API, InlineTool } from '@editorjs/editorjs'
+import { generateID } from './generateID'
 
 export class FootnoteMaker implements InlineTool {
-  api: API;
-  button?: HTMLButtonElement;
-  state: boolean;
+  api: API
+  button?: HTMLButtonElement
+  state: boolean
 
   static get isInline() {
-    return true;
+    return true
   }
 
   constructor(args: { api: API }) {
-    const { api } = args;
+    const { api } = args
 
-    this.api = api;
+    this.api = api
     // this.button = null;
-    this.state = false;
+    this.state = false
 
-    this.render = this.render.bind(this);
-    this.surround = this.surround.bind(this);
+    this.render = this.render.bind(this)
+    this.surround = this.surround.bind(this)
   }
 
   render() {
-    this.button = document.createElement("button");
-    this.button.type = "button";
-    this.button.textContent = "M";
-    this.button.classList.add(this.api.styles.inlineToolButton);
+    this.button = document.createElement('button')
+    this.button.type = 'button'
+    this.button.textContent = 'M'
+    this.button.classList.add(this.api.styles.inlineToolButton)
 
-    return this.button;
+    return this.button
   }
 
   surround(range: Range) {
@@ -44,35 +44,35 @@ export class FootnoteMaker implements InlineTool {
 
     if (this.state) {
       // If highlights is already applied, do nothing for now
-      return;
+      return
     }
 
-    const selectedText = range.extractContents();
+    const selectedText = range.extractContents()
 
     // Create MARK element
-    const id = generateID();
+    const id = generateID()
 
-    const mark = document.createElement("a");
-    mark.href = "#" + id;
+    const mark = document.createElement('a')
+    mark.href = '#' + id
 
-    const footnoteNumber = document.createElement("small");
-    footnoteNumber.innerHTML = " [ #" + id + " ]";
+    const footnoteNumber = document.createElement('small')
+    footnoteNumber.innerHTML = ' [ #' + id + ' ]'
 
     // Append to the MARK element selected TextNode
-    mark.appendChild(selectedText);
-    mark.appendChild(footnoteNumber);
+    mark.appendChild(selectedText)
+    mark.appendChild(footnoteNumber)
 
     // Insert new element
-    range.insertNode(mark);
+    range.insertNode(mark)
 
     // add a footnote block now
     const newBlock = this.api.blocks.insert(
-      "footnoteParagraph",
+      'footnoteParagraph',
       { id },
       undefined,
       undefined,
       true
-    );
+    )
 
     // console.log(
     //   this.api.blocks
@@ -81,28 +81,28 @@ export class FootnoteMaker implements InlineTool {
     //     .then((d) => console.log(d))
     // );
 
-    this.api.inlineToolbar.close();
+    this.api.inlineToolbar.close()
 
     // this.api.focus(this.api.blocks.getCurrentBlockIndex() + 1)
   }
 
   clear() {
-    console.log("Clear called");
+    console.log('Clear called')
   }
 
   checkState(selection: Selection): boolean {
-    const text = selection.anchorNode;
+    const text = selection.anchorNode
 
     if (!text) {
-      return;
+      return
     }
 
-    const anchorElement = text instanceof Element ? text : text.parentElement;
+    const anchorElement = text instanceof Element ? text : text.parentElement
 
-    this.state = !!anchorElement.closest("MARK");
+    this.state = !!anchorElement.closest('MARK')
 
-    return this.state;
+    return this.state
   }
 }
 
-console.log("Defined class", FootnoteMaker);
+console.log('Defined class', FootnoteMaker)

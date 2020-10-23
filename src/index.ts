@@ -1,4 +1,5 @@
-import { Footnote } from "./Footnote";
-import { FootnoteMaker } from "./FootnoteMaker";
+import { Footnote } from './Footnote'
+import { FootnoteMaker } from './FootnoteMaker'
 
-export { Footnote, FootnoteMaker };
+console.log("Loaded editorjs-footnotes version 0.0.4-alpha")
+export { Footnote, FootnoteMaker }
