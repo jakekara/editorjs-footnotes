@@ -4,7 +4,7 @@ import { generateID } from './generateID'
 import { API, BlockToolData, EditorConfig } from '@editorjs/editorjs'
 import styles from './style.css'
 
-interface TuneSetting {
+export interface TuneSetting {
   name: string
   icon: string
   active: boolean
