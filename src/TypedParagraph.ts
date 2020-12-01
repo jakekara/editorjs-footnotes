@@ -15,8 +15,14 @@ export class TypedParagraph extends Paragraph {
 
         // if no paragraph type is set, set one
         if (data.paragraphType) {
-            this._data.paragraphType = ("paragraph" as ParagraphType)
+            this._data.paragraphType = "paragraph"
         }
+
+        this.clear = this.clear.bind(this)
+        this.onPaste = this.onPaste.bind(this)
+        this.save = this.save.bind(this)
+        this.render = this.render.bind(this)
+        this.renderSettings = this.renderSettings.bind(this)
     }
 
     clear() {
@@ -101,12 +107,23 @@ export class TypedParagraph extends Paragraph {
                 if (isFootnote) {
                     const anchors = p.getElementsByTagName("a")
                     if (anchors.length < 1) {
-                        console.log("ruh-roh no anchors found. cant get footnote id", p);
+                        console.log("ruh-roh no anchors found. can't get footnote id", p);
                         continue
                     }
-                    console.log("isFootnote", anchors[0].getAttribute("href"), anchors[0].getAttribute("name"))
-                    const footnoteID = anchors[0].getAttribute("name")
-                    const footnoteLabel = anchors[0].innerText.replace("[", "").replace("]", "").trim()
+                    const firstLink = anchors[0]
+
+                    // remove the reundent first link
+                    p.removeChild(firstLink)
+
+                    blockData["text"] = this.api.sanitizer.clean(p.innerHTML, {
+                        i: true,
+                        a: { href: true },
+                        b: true,
+                    })
+
+                    console.log("isFootnote", firstLink.getAttribute("href"), firstLink.getAttribute("name"))
+                    const footnoteID = firstLink.getAttribute("name")
+                    const footnoteLabel = firstLink.innerText.replace("[", "").replace("]", "").trim()
                     console.log("footnoteLabel Text", footnoteLabel)
                     blockType = "footnoteParagraph"
                     blockData["id"] = footnoteID
@@ -137,8 +154,11 @@ export class TypedParagraph extends Paragraph {
         })
 
 
-        const currentParagraphType: ParagraphType = this._data.paragraphType === "paragraph" ? "paragraph" : "blockquote"
+        // const currentParagraphType: ParagraphType = this._data.paragraphType === "paragraph" ? "paragraph" : "blockquote"
+        const currentParagraphType = this._data.paragraphType || "paragraph"
+        // const currentParagraphType = "paragraph"
 
+        // console.log("154: currentParagraphType:", currentParagraphType)
         const wrapper = document.createElement("div")
         wrapper.setAttribute("data-paragraph-type", currentParagraphType)
         wrapper.classList.add(styles["typed-paragraph-wrapper"]);
@@ -152,7 +172,9 @@ export class TypedParagraph extends Paragraph {
     renderSettings() {
 
         const getParagraphType = (): ParagraphType => {
-            return this.wrapper.getAttribute("data-paragraph-type") === "paragraph" ? "paragraph" : "blockquote"
+            const paragraphTypeAttribute = this.wrapper.getAttribute("data-paragraph-type")
+            console.log("paragraphTypeAttribute", paragraphTypeAttribute)
+            return paragraphTypeAttribute === "paragraph" ? "paragraph" : "blockquote"
         }
 
         const reverseParagraphType = (p: ParagraphType): ParagraphType => {
