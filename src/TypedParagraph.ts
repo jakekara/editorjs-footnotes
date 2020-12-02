@@ -15,7 +15,7 @@ export class TypedParagraph extends Paragraph {
 
         // if no paragraph type is set, set one
         if (data.paragraphType) {
-            this._data.paragraphType = "paragraph"
+            this.data.paragraphType = "paragraph"
         }
 
         this.clear = this.clear.bind(this)
@@ -155,7 +155,8 @@ export class TypedParagraph extends Paragraph {
 
 
         // const currentParagraphType: ParagraphType = this._data.paragraphType === "paragraph" ? "paragraph" : "blockquote"
-        const currentParagraphType = this._data.paragraphType || "paragraph"
+        console.log("currentParagraphType", this.data.paragraphType)
+        const currentParagraphType = this.data.paragraphType || "paragraph"
         // const currentParagraphType = "paragraph"
 
         // console.log("154: currentParagraphType:", currentParagraphType)
