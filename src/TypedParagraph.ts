@@ -14,7 +14,7 @@ export class TypedParagraph extends Paragraph {
         this.api = api;
 
         // if no paragraph type is set, set one
-        if (data.paragraphType) {
+        if (!data.paragraphType) {
             this.data.paragraphType = "paragraph"
         }
 
@@ -30,11 +30,8 @@ export class TypedParagraph extends Paragraph {
         super.clear()
     }
 
-    onPaste(event: Event) {
-
-        console.log("paste event", event)
-
-    }
+    // onPaste(event: Event) {
+    // }
 
     save(blockContent: BlockToolData) {
 
